@@ -2,17 +2,17 @@ import AppBar from "../components/AppBar"
 import { Box, Button } from "@mui/material"
 import { useNavigate } from "react-router-dom";
 
-export default function Mood() {
+export default function Energy() {
     const navigate = useNavigate();
 
     const handleEnter = () => {
-        navigate('/energy')
+        navigate('/eat')
     }
     return(
         <div>
             <AppBar />
             <h1>
-                how do you feel today?
+                how are your energy levels?
             </h1>
             <Box
                 sx={{
@@ -20,19 +20,13 @@ export default function Mood() {
                 }}
             >
                 <Button onClick={handleEnter}>
-                    <img src="/1.png" alt="1/5" style={{width: "150px", height: "150px"}} />
+                    <img src="/energy1.png" alt="low" style={{width: "150px", height: "150px"}} />
                 </Button>
                 <Button onClick={handleEnter}>
-                    <img src="/2.png" alt="2/5" style={{width: "150px", height: "150px"}} />
+                    <img src="/energy2.png" alt="moderate" style={{width: "250px", height: "150px"}} />
                 </Button>
                 <Button onClick={handleEnter}>
-                    <img src="/3.png" alt="3/5" style={{width: "150px", height: "150px"}} />
-                </Button>
-                <Button onClick={handleEnter}>
-                    <img src="/4.png" alt="4/5" style={{width: "150px", height: "150px"}} />
-                </Button>
-                <Button onClick={handleEnter}>
-                    <img src="/5.png" alt="5/5" style={{width: "150px", height: "150px"}} />
+                    <img src="/energy3.png" alt="high" style={{width: "400px", height: "150px"}} />
                 </Button>
             </Box>
             {/* <Button variant="contained" onClick={handleEnter} sx={{background: "#8FB7D1"}}>

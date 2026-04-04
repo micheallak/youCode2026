@@ -3,6 +3,9 @@ import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Mood from './pages/Mood'
+import Energy from './pages/Energy' 
+import Eat from './pages/Eat'
+import Submit from './pages/Submit'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -12,6 +15,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/mood" element={<Mood />} />
+        <Route path="/energy" element={<Energy />} />
+        <Route path="/eat" element={<Eat />} />
+        <Route path="/submit" element={<Submit />} />
       </Routes>
     </BrowserRouter>
   )
