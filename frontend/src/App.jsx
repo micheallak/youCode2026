@@ -8,6 +8,7 @@ import Eat from './pages/Eat'
 import Submit from './pages/Submit'
 import { LanguageProvider } from './LanguageContext'
 import { InputProvider } from './inputContext'
+import Timeout from './Timeout'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -16,6 +17,7 @@ function App() {
     <LanguageProvider>
       <InputProvider>
         <BrowserRouter>
+            <Timeout />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/mood" element={<Mood />} />
