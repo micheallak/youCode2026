@@ -4,6 +4,7 @@ import EnergyChart from "../components/energyChart";
 import FoodChart from "../components/foodChart";
 import EngagementChart from "../components/engagementChart";
 import { totalResidents, checkIns, responses } from "../data/mockData";
+import { Box } from "@mui/material";
 
 export default function Dashboard() {
     const [timeFilter, setTimeFilter] = useState("overall");
@@ -56,6 +57,7 @@ export default function Dashboard() {
         fontSize: "28px",
         fontWeight: "bold",
         marginTop: "10px",
+        color: "#000000"
     };
 
     return (
@@ -83,22 +85,33 @@ export default function Dashboard() {
 
                 <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "20px" }}>
                     <div style={cardStyle}>
-                        <h4>Total Shelter Attendance</h4>
+                        <h4 style={{ color: '#000000' }}>Total Shelter Attendance</h4>
                         <p style={numberStyle}>{totalResidents}</p>
                     </div>
 
                     <div style={cardStyle}>
-                        <h4>Total Check-ins</h4>
+                        <h4 style={{ color: '#000000' }}>Total Check-ins</h4>
                         <p style={numberStyle}>{checkIns}</p>
                     </div>
                 </div>
             </div>
 
             {/* Row 2 */}
-            <div style={{ display: "flex", gap: "20px" }}>
-                <MoodChart data={moodData} />
-                <EnergyChart data={energyData} />
-                <FoodChart data={foodData} />
+            <div style={{ display: "flex", gap: "20px", padding: 2}}>
+                <Box
+                    sx={{
+                        backgroundColor: "#f0f0f0",
+                        borderRadius: "12px",
+                        display: "flex",
+                        flexDirection: "row",
+                        width: "100%",
+                        paddingBottom: "80px",
+                    }}
+                >
+                    <MoodChart data={moodData} />
+                    <EnergyChart data={energyData} />
+                    <FoodChart data={foodData} />
+                </Box>
             </div>
         </div>
     );
