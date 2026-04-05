@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import connectDB from './db/connect.js'
-import UserInput from './models/user_input.js'
+import userInputRouter from './routers/user_input.js'
 
 dotenv.config()
 connectDB()
@@ -31,6 +31,6 @@ mongoose.connect(process.env.MONGO_URI)
 //   }
 // })
 
+app.use('/api/user-input', userInputRouter)
 
-
-app.listen(3000, () => console.log('Server running on port 3000'))
+app.listen(8080, () => console.log('Server running on port 3000'))
