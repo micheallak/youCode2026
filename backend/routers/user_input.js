@@ -6,12 +6,23 @@ const router = express.Router();
 // POST
 router.post('/', async (req, res) => { 
     try {
-        const { mood, energy, food_status } = req.body;
-        const newUserInput = new UserInput({ mood, energy, food_status });
+        const { clientSubmissionId, mood, energy, food_status } = req.body;
+        if (!clientSubmissionId) {
+            return res.status(400).json({ message: "clientSubmissionId is required" });
+        }
+        const existing = await UserInput.findOne({ clientSubmissionId });
+        if (existing) {
+            return res.status(200).json({
+                message: "Already exists",
+                data: existing
+            });
+        }
+        const newUserInput = new UserInput({ clientSubmissionId, mood, energy, food_status });
         await newUserInput.save();
         res.status(201).json(newUserInput);
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        console.error("Error saving:", error);
+        res.status(500).json({ message: error.message });
     }
 })
 
