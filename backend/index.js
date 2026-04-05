@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import connectDB from './db/connect.js'
+import UserInput from './models/user_input.js'
 
 dotenv.config()
 connectDB()
@@ -14,5 +15,22 @@ app.use(express.json())
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
   .catch((err) => console.error(err))
+
+// testing!!
+// app.get("/test", async (req, res) => {
+//   try {
+//     const newUserInput = await UserInput.create({
+//       mood: 1,
+//       energy: 3,
+//       food_status: false
+//     });
+
+//     res.json(newUserInput);
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// })
+
+
 
 app.listen(3000, () => console.log('Server running on port 3000'))
