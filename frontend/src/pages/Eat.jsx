@@ -1,9 +1,11 @@
 import AppBar from "../components/AppBar"
 import { Box, Button } from "@mui/material"
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "../LanguageContext";
 
 export default function Eat() {
     const navigate = useNavigate();
+    const { t } = useLanguage();
 
     const handleEnter = () => {
         navigate('/submit')
@@ -12,7 +14,7 @@ export default function Eat() {
         <div>
             <AppBar />
             <h1>
-                have you eaten today?
+                {t.eaten}
             </h1>
             <Box
                 sx={{

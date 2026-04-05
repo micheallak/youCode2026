@@ -1,9 +1,11 @@
 import AppBar from "../components/AppBar"
 import { Box, Button } from "@mui/material"
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "../LanguageContext";
 
 export default function Energy() {
     const navigate = useNavigate();
+    const { t } = useLanguage();
 
     const handleEnter = () => {
         navigate('/eat')
@@ -12,7 +14,7 @@ export default function Energy() {
         <div>
             <AppBar />
             <h1>
-                how are your energy levels?
+                {t.energy}
             </h1>
             <Box
                 sx={{

@@ -1,9 +1,11 @@
 import AppBar from "../components/AppBar"
 import { Box, Button } from "@mui/material"
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "../LanguageContext";
 
 export default function Mood() {
     const navigate = useNavigate();
+    const { t } = useLanguage();
 
     const handleEnter = () => {
         navigate('/energy')
@@ -12,7 +14,7 @@ export default function Mood() {
         <div>
             <AppBar />
             <h1>
-                how do you feel today?
+                {t.howDoYouFeel}
             </h1>
             <Box
                 sx={{
