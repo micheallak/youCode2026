@@ -126,15 +126,6 @@ npm install
 npm start
 ```
 
-- Resident check-in: `http://localhost:3000`
-- Staff dashboard: `http://localhost:3000/staff`
-
-Default staff credentials — **change before any real deployment:**
-```
-Username: staff
-Password: changeme
-```
-
 ### Offline / local network deploy
 
 For shelters with unreliable internet, run on a Raspberry Pi on the local network:
@@ -142,9 +133,6 @@ For shelters with unreliable internet, run on a Raspberry Pi on the local networ
 ```bash
 # On the Pi
 npm start
-
-# Resident tablet: http://<pi-local-ip>:3000
-# Staff laptop:    http://<pi-local-ip>:3000/staff
 ```
 ---
 
