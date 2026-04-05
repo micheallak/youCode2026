@@ -6,14 +6,13 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { foodData } from "../data/mockData";
 
-export default function foodChart() {
+export default function FoodChart({ data }) {
   return (
     <div style={{ width: "100%", height: 300 }}>
       <h3>Food Trends</h3>
       <ResponsiveContainer>
-        <BarChart data={foodData}>
+        <BarChart data={data}>
           <XAxis dataKey="status" />
           <YAxis />
           <Tooltip />
