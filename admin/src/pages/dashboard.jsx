@@ -3,7 +3,7 @@ import MoodChart from "../components/moodChart";
 import EnergyChart from "../components/energyChart";
 import FoodChart from "../components/foodChart";
 import EngagementChart from "../components/engagementChart";
-import { totalResidents, checkIns, responses } from "../data/mockData";
+import { totalResidents, checkIns } from "../data/mockData";
 import { useNavigate } from "react-router-dom";
 
 const cardStyle = {
@@ -37,26 +37,26 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const [timeFilter, setTimeFilter] = useState("overall");
 
-  const filteredData =
-    timeFilter === "overall"
-      ? responses
-      : responses.filter((r) => r.time === timeFilter);
+  // const filteredData =
+  //   timeFilter === "overall"
+  //     ? responses
+  //     : responses.filter((r) => r.time === timeFilter);
 
-  const countByKey = (data, key) => {
-    const counts = {};
-    data.forEach((item) => {
-      counts[item[key]] = (counts[item[key]] || 0) + 1;
-    });
-    return counts;
-  };
+  // const countByKey = (data, key) => {
+  //   const counts = {};
+  //   data.forEach((item) => {
+  //     counts[item[key]] = (counts[item[key]] || 0) + 1;
+  //   });
+  //   return counts;
+  // };
 
-  const moodCounts = countByKey(filteredData, "mood");
-  const energyCounts = countByKey(filteredData, "energy");
-  const foodCounts = countByKey(filteredData, "food");
+  // const moodCounts = countByKey(filteredData, "mood");
+  // const energyCounts = countByKey(filteredData, "energy");
+  // const foodCounts = countByKey(filteredData, "food");
 
-  const moodData = Object.keys(moodCounts).map((key) => ({ mood: key, count: moodCounts[key] }));
-  const energyData = Object.keys(energyCounts).map((key) => ({ level: key, count: energyCounts[key] }));
-  const foodData = Object.keys(foodCounts).map((key) => ({ status: key, count: foodCounts[key] }));
+  // const moodData = Object.keys(moodCounts).map((key) => ({ mood: key, count: moodCounts[key] }));
+  // const energyData = Object.keys(energyCounts).map((key) => ({ level: key, count: energyCounts[key] }));
+  // const foodData = Object.keys(foodCounts).map((key) => ({ status: key, count: foodCounts[key] }));
 
   return (
     <div className="dashboard-page" style={{
@@ -75,7 +75,9 @@ export default function Dashboard() {
           <p style={{ color: "#7aa8c2", margin: "30px 0 0", fontSize: "25px" }}>Anonymous wellbeing trends</p>
         </div>
         <div style={{ width: 180, display: "flex", justifyContent: "flex-end" }}>
-          <button onClick={() => navigate("/")} style={{ ...toggleBtn, width: "120px", padding: "12px 0" }}>Logout</button>
+          <button onClick={() => {
+            localStorage.removeItem("isLoggedIn");
+            navigate("/")}} style={{ ...toggleBtn, width: "120px", padding: "12px 0" }}>Logout</button>
         </div>
       </div>
 
@@ -107,9 +109,9 @@ export default function Dashboard() {
 
       {/* Row 2: Bar Charts */}
       <div style={{ display: "flex", gap: "24px" }}>
-        <div style={{ flex: 1 }}><MoodChart data={moodData} /></div>
-        <div style={{ flex: 1 }}><EnergyChart data={energyData} /></div>
-        <div style={{ flex: 1 }}><FoodChart data={foodData} /></div>
+        <div style={{ flex: 1 }}><MoodChart timeFilter={timeFilter} /></div>
+        <div style={{ flex: 1 }}><EnergyChart timeFilter={timeFilter} /></div>
+        <div style={{ flex: 1 }}><FoodChart timeFilter={timeFilter} /></div>
       </div>
 
     </div>
