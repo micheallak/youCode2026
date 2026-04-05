@@ -98,9 +98,9 @@ To add a language: copy `config/languages/en.json`, translate the string values,
 |---|---|
 | Frontend | HTML / CSS / JS |
 | Offline support | Service Worker (PWA) |
-| Matching logic | JS |
+| Matching logic | JS Json|
 | Backend | Node.js + Express |
-| Database | JS |
+| Database | JS Json|
 | Staff auth | Password-protected route |
 
 ---
