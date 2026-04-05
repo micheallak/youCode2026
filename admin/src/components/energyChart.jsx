@@ -14,7 +14,7 @@ export default function EnergyChart({ data }) {
       <h3>Energy Trends</h3>
       <ResponsiveContainer>
         <BarChart data={data}>
-          <XAxis dataKey="level" />
+          <XAxis dataKey="level"  angle={-30}  />
           <YAxis />
           <Tooltip />
           <Bar dataKey="count" />

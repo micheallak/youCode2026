@@ -13,7 +13,7 @@ export default function FoodChart({ data }) {
       <h3>Food Trends</h3>
       <ResponsiveContainer>
         <BarChart data={data}>
-          <XAxis dataKey="status" />
+          <XAxis dataKey="status"  angle={-30}  />
           <YAxis />
           <Tooltip />
           <Bar dataKey="count" />

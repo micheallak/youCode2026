@@ -13,7 +13,7 @@ export default function MoodChart({ data }) {
       <h3>Mood Trends</h3>
       <ResponsiveContainer>
         <BarChart data={data}>
-          <XAxis dataKey="mood" />
+          <XAxis dataKey="mood" angle={-30}   />
           <YAxis />
           <Tooltip />
           <Bar dataKey="count" />

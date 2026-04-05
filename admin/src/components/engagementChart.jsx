@@ -7,7 +7,7 @@ export default function EngagementChart() {
         { name: "Remaining", value: totalResidents - checkIns },
     ];
 
-    const COLORS = ["#4CAF50", "#000000"]; // strong green + very light grey
+    const COLORS = ["#4CAF50", "#3b32baff"]; // strong green + very light grey
 
     return (
         <div>
