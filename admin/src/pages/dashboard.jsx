@@ -4,9 +4,11 @@ import EnergyChart from "../components/energyChart";
 import FoodChart from "../components/foodChart";
 import EngagementChart from "../components/engagementChart";
 import { totalResidents, checkIns, responses } from "../data/mockData";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
+    const navigate = useNavigate();
     const [timeFilter, setTimeFilter] = useState("overall");
 
     // Filter data
@@ -61,29 +63,29 @@ export default function Dashboard() {
     };
 
     return (
-        <div style={{ padding: "20px"}}>
-            <h1>Staff Dashboard</h1>
+        <div style={{ padding: "20px", position: "relative"}}>
+            <Button variant="contained" onClick={() => navigate('/')} sx={{position: "absolute", top: "10px", right: "10px", padding: "10px 20px", backgroundColor:"#8FB7D1" }}>
+                Logout
+            </Button>
+            <h1> Staff Dashboard</h1>
             <p>Anonymous wellbeing trends</p>
 
             {/* FILTER BUTTONS */}
-            <div style={{
+            {/* <div style={{
                 display: "flex", flexDirection: "column",
-                right: "20px", top: "5px",
-                gap: "10px",   
-                width: "120px", position: "absolute"
             }}>
                 <button onClick={() => setTimeFilter("morning")}>Morning</button>
                 <button onClick={() => setTimeFilter("evening")}>Evening</button>
                 <button onClick={() => setTimeFilter("overall")}>Overall</button>
-            </div>
+            </div> */}
 
             {/* Row 1 */}
-            <div style={{ display: "flex", gap: "30px", alignItems: "center", marginBottom: "40px" }}>
-                <div style={{ flex: 1 }}>
+            <div style={{ display: "flex", gap: "30px", alignItems: "center", marginBottom: "40px", marginTop: "20px"}}>
+                <div style={{ flex: 1, display:"flex", flexDirection:"column", alignItems:"center"}}>
                     <EngagementChart />
                 </div>
 
-                <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "20px" }}>
+                <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "10px", marginRight: "auto", alignSelf: "flex-start" }}>
                     <div style={cardStyle}>
                         <h4 style={{ color: '#000000' }}>Total Shelter Attendance</h4>
                         <p style={numberStyle}>{totalResidents}</p>
@@ -93,6 +95,13 @@ export default function Dashboard() {
                         <h4 style={{ color: '#000000' }}>Total Check-ins</h4>
                         <p style={numberStyle}>{checkIns}</p>
                     </div>
+                </div>
+                <div style={{
+                    display: "flex", flexDirection: "column", gap: "10px",
+                }}>
+                    <button onClick={() => setTimeFilter("morning")}>Morning</button>
+                    <button onClick={() => setTimeFilter("evening")}>Evening</button>
+                    <button onClick={() => setTimeFilter("overall")}>Overall</button>
                 </div>
             </div>
 
