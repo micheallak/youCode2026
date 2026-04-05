@@ -109,3 +109,10 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+#root:has(.dashboard-page) {
+  width: 100%;
+  max-width: 100%;
+  border-inline: none;
+  align-items: stretch;
+}

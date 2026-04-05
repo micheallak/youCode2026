@@ -7,18 +7,13 @@ export default function EngagementChart() {
     { name: "Remaining", value: totalResidents - checkIns },
   ];
 
-  const COLORS = ["#4CAF50", "#F5F5F5"]; // strong green + very light grey
+  const COLORS = ["#4a90b8", "#e4eff5"];
 
   return (
     <div>
-      <h3>App Engagement</h3>
-      <PieChart width={300} height={300}>
-        <Pie
-          data={data}
-          dataKey="value"
-          outerRadius={100}
-          stroke="none" // removes dividing line
-        >
+      <h3 style={{ color: "#5a8fa8", marginTop: 0, fontSize: "30px" }}>App Engagement</h3>
+      <PieChart width={800} height={340}>
+        <Pie data={data} dataKey="value" outerRadius={160} cx={450} stroke="none">
           {data.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index]} />
           ))}
