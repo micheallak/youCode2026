@@ -155,7 +155,7 @@ When the food signal is "no," a nourishment note is added to the matched prompt 
 
 **Current Characteristics**
 - [x] 5-tap check-in: time of day → mood → energy → food signal → personalised prompt
-- [ ] Works fully offline.
+- [x] Works fully offline.
 - [x] 30-second auto-clear on inactivity
 - [x] Staff dashboard with Morning / Evening / Overall filters
 - [x] Language dropdown (5 languages)
