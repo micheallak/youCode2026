@@ -1,6 +1,11 @@
 import mongoose from "mongoose";
 
 const userInputSchema = new mongoose.Schema({
+    clientSubmissionId: {
+        type: String,
+        required: true,
+        unique: true
+    },
     mood: Number,
     energy: Number,
     food_status: Number,

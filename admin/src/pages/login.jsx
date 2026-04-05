@@ -9,9 +9,10 @@ export default function Login() {
 
     const handleLogin = () => {
         if (username === 'user' && password === "1234") {
+            localStorage.setItem("isLoggedIn", "true");
             navigate('/dashboard')
         } else {
-            alert('Invalid username')
+            alert('Invalid username or password')
         }
     }
 
