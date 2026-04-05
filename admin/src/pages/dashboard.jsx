@@ -1,8 +1,10 @@
+import { useState } from "react";
 import MoodChart from "../components/moodChart";
 import EnergyChart from "../components/energyChart";
 import FoodChart from "../components/foodChart";
 import EngagementChart from "../components/engagementChart";
-import { totalResidents, checkIns } from "../data/mockData";
+import { totalResidents, checkIns, responses } from "../data/mockData";
+import { useNavigate } from "react-router-dom";
 
 const cardStyle = {
   padding: "24px 28px",
@@ -32,6 +34,30 @@ const toggleBtn = {
 };
 
 export default function Dashboard() {
+  const navigate = useNavigate();
+  const [timeFilter, setTimeFilter] = useState("overall");
+
+  const filteredData =
+    timeFilter === "overall"
+      ? responses
+      : responses.filter((r) => r.time === timeFilter);
+
+  const countByKey = (data, key) => {
+    const counts = {};
+    data.forEach((item) => {
+      counts[item[key]] = (counts[item[key]] || 0) + 1;
+    });
+    return counts;
+  };
+
+  const moodCounts = countByKey(filteredData, "mood");
+  const energyCounts = countByKey(filteredData, "energy");
+  const foodCounts = countByKey(filteredData, "food");
+
+  const moodData = Object.keys(moodCounts).map((key) => ({ mood: key, count: moodCounts[key] }));
+  const energyData = Object.keys(energyCounts).map((key) => ({ level: key, count: energyCounts[key] }));
+  const foodData = Object.keys(foodCounts).map((key) => ({ status: key, count: foodCounts[key] }));
+
   return (
     <div className="dashboard-page" style={{
       padding: "40px 48px",
@@ -49,19 +75,17 @@ export default function Dashboard() {
           <p style={{ color: "#7aa8c2", margin: "30px 0 0", fontSize: "25px" }}>Anonymous wellbeing trends</p>
         </div>
         <div style={{ width: 180, display: "flex", justifyContent: "flex-end" }}>
-          <button style={{ ...toggleBtn, width: "120px", padding: "12px 0" }}>Logout</button>
+          <button onClick={() => navigate("/")} style={{ ...toggleBtn, width: "120px", padding: "12px 0" }}>Logout</button>
         </div>
       </div>
 
       {/* Row 1: Pie | Stat Cards | Toggle Buttons */}
       <div style={{ display: "flex", gap: "32px", alignItems: "center", marginBottom: "48px" }}>
 
-        {/* Pie Chart - bigger */}
         <div style={{ flex: 1.2 }}>
           <EngagementChart />
         </div>
 
-        {/* Stat Cards - shifted left with less flex */}
         <div style={{ flex: 0.8, display: "flex", flexDirection: "column", gap: "35px" }}>
           <div style={cardStyle}>
             <h4 style={{ color: "#7aa8c2", margin: 0, fontSize: "20px" }}>Total Shelter Attendance</h4>
@@ -73,20 +97,19 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Toggle Buttons - bigger */}
         <div style={{ display: "flex", flexDirection: "column", gap: "20px", alignItems: "center" }}>
-          <button style={toggleBtn}>Morning</button>
-          <button style={toggleBtn}>Evening</button>
-          <button style={toggleBtn}>Overall</button>
+          <button style={toggleBtn} onClick={() => setTimeFilter("morning")}>Morning</button>
+          <button style={toggleBtn} onClick={() => setTimeFilter("evening")}>Evening</button>
+          <button style={toggleBtn} onClick={() => setTimeFilter("overall")}>Overall</button>
         </div>
 
       </div>
 
       {/* Row 2: Bar Charts */}
       <div style={{ display: "flex", gap: "24px" }}>
-        <div style={{ flex: 1 }}><MoodChart /></div>
-        <div style={{ flex: 1 }}><EnergyChart /></div>
-        <div style={{ flex: 1 }}><FoodChart /></div>
+        <div style={{ flex: 1 }}><MoodChart data={moodData} /></div>
+        <div style={{ flex: 1 }}><EnergyChart data={energyData} /></div>
+        <div style={{ flex: 1 }}><FoodChart data={foodData} /></div>
       </div>
 
     </div>

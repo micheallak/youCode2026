@@ -1,12 +1,11 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
-import { moodData } from "../data/mockData";
 
-export default function MoodChart() {
+export default function MoodChart({ data }) {
   return (
     <div style={{ width: "100%", height: 300 }}>
       <h3>Mood Trends</h3>
       <ResponsiveContainer>
-        <BarChart data={moodData}>
+        <BarChart data={data}>
           <XAxis dataKey="mood" />
           <YAxis />
           <Tooltip />
